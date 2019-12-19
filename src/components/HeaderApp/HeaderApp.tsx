@@ -19,6 +19,26 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
       hiddenCardType: false
     }
   }
+
+  getPath = (path) =>{
+    switch(path){
+      
+      case '/apply':
+        return '/'
+      case '/verification':
+        return '/apply'
+
+      default:
+        return '/'
+    }
+  }
+  updateButtonBack = () =>{
+    const {history, location}:any = this.props;
+    let path = this.getPath(location.pathname);
+
+    history.push(path)
+  }
+
   updateHeaderName = (path) =>{
     switch(path){
       case "/":
@@ -30,7 +50,7 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
       case '/success':
         return <Title>Результат</Title>
 
-      defautl:
+      default:
         return( <Title>Грошові перекази</Title>)
     }
 
@@ -50,7 +70,7 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
             <Left style={{flex:2}}>
               {
                 location.pathname !== '/success'? (
-                  <Button onPress={()=> history.push("/")} transparent>
+                  <Button onPress={this.updateButtonBack} transparent>
           
               <Icon name='ios-arrow-back' ></Icon>
               
