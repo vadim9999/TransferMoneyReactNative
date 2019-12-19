@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar, ActivityIndicator } from 'react-native';
-import Home from './src/Home'
+// import Home from './src/Home'
 import * as Font from 'expo-font';
-
+import Router from './src/Router'
 
 class App extends React.Component<{},{}> {
   constructor(props) {
@@ -31,7 +31,7 @@ class App extends React.Component<{},{}> {
       return <ActivityIndicator />;
     }
     return (
-      <Home />
+      <Router />
     );
   }
   

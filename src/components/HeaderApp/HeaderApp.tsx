@@ -6,18 +6,31 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
+import {Link} from 'react-router-native'
+import { withRouter} from 'react-router-native'
 
-class HeaderApp extends React.Component<{},{}>{
+class ConnectedHeaderApp extends React.Component<{},{}>{
+  constructor(props){
+    super(props)
+    this.state ={
+      hiddenCardType: false
+    }
+  }
   render(){
+    console.log("location header", this.props.location);
+    
     return (
       <View style={{backgroundColor:"#6ca8f8", }}>
             <View >
             <Header transparent>
             <Left style={{flex:2}}>
-            <Button transparent>
+            
+              <Button onPress={()=> this.props.history.push("/")} transparent>
               <Icon name='ios-arrow-back' ></Icon>
               
             </Button>
+             
+            
             </Left>
                     <Body style={{flex:3}}>
                     <Title>Грошові перекази</Title>
@@ -31,17 +44,24 @@ class HeaderApp extends React.Component<{},{}>{
             </View>
            <View style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
 
-             <View style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+             
+             {
+               this.props.location.pathname === '/' ? (
+                <View style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+                  <View >
+                  <Text style={{color:'white'}}>Golden Dream</Text>
+                  </View>
+                  <View>
+                  <Text style={{color:'white'}}> 01/09</Text>
+                  </View>
+                  </View>
+                 ) : null
+               
+             }
+             
+             
              <View>
-             <Text style={{color:'white'}}>Golden Dream</Text>
-             </View>
-             <View>
-             <Text style={{color:'white'}}> 01/09</Text>
-             </View>
-             </View>
-
-             <View>
-             <Text style={{fontSize:50 , color:'white'}}>2,950.00</Text>
+             <Text style={{fontSize:50 , color:'white'}}>2,900.00</Text>
              </View>
             
              <View style={{display:'flex', flexDirection:'row',justifyContent:'center'}}>
@@ -57,4 +77,5 @@ class HeaderApp extends React.Component<{},{}>{
   }
 }
 
+const HeaderApp = withRouter(ConnectedHeaderApp)
 export default HeaderApp
