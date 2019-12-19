@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {Link} from 'react-router-native'
 import { withRouter} from 'react-router-native'
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 class ConnectedHeaderApp extends React.Component<{},{}>{
@@ -62,7 +62,12 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
     console.log("location header", this.props.location);
     
     return (
-      <View style={{ backgroundColor:"#6ca8f8", }}>
+      <LinearGradient
+      colors={['#6eaaf9','#0552ba']}
+      start={[-0.1,0.4]}
+      style={{borderRadius:4}}
+     >
+      <View >
             <View >
             <Header transparent>
 
@@ -133,6 +138,8 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
            </View>
             
           </View>
+    </LinearGradient>
+     
     )
   }
 }
