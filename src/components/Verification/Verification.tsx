@@ -29,7 +29,7 @@ class Verification extends React.Component<{},{}>{
           <Input style={{textAlign:'center'}} placeholder="2" maxLength={1} />
           <Input style={{textAlign:'center'}} placeholder="3" maxLength={1} />
           <Input style={{textAlign:'center'}} placeholder="4" maxLength={1} />
-
+      
 </Item> 
           <Button onPress={() => this.props.history.push('/success')} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
             <Text style={{ color:'black'}}>ПЕРЕКАЗАТИ</Text>
@@ -44,5 +44,6 @@ class Verification extends React.Component<{},{}>{
     )
   }
 }
+
 
 export default Verification

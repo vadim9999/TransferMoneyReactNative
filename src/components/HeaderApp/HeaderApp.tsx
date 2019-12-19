@@ -5,9 +5,12 @@ import {
   StatusBar,
   Platform,
   TouchableOpacity,
+
 } from 'react-native';
 import {Link} from 'react-router-native'
 import { withRouter} from 'react-router-native'
+
+
 
 class ConnectedHeaderApp extends React.Component<{},{}>{
   constructor(props){
@@ -16,7 +19,26 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
       hiddenCardType: false
     }
   }
+  updateHeaderName = (path) =>{
+    switch(path){
+      case "/":
+        return <Title>Грошові перекази</Title>
+      case '/apply':
+        return <Title>Сума переказу</Title>
+      case '/verification':
+        return <Title>Підтвердження операції</Title>
+      case '/success':
+        return <Title>Результат</Title>
+
+      defautl:
+        return( <Title>Грошові перекази</Title>)
+    }
+
+   
+  }
   render(){
+    const {location, history}:any = this.props;
+
     console.log("location header", this.props.location);
     
     return (
@@ -24,20 +46,31 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
             <View >
             <Header transparent>
 
-              
+
             <Left style={{flex:2}}>
-            
-              <Button onPress={()=> this.props.history.push("/")} transparent>
+              {
+                location.pathname !== '/success'? (
+                  <Button onPress={()=> history.push("/")} transparent>
           
               <Icon name='ios-arrow-back' ></Icon>
               
             </Button>
+                ):(
+                  <Button  transparent>
+          
+                  <Icon name='close' ></Icon>
+                  
+                </Button>
+                )
+              }
+              
              
             
             </Left>
-           
+
                     <Body style={{flex:3}}>
-                    <Title>Грошові перекази</Title>
+                      {this.updateHeaderName(location.pathname)}
+                   
                     </Body>
                     <Right style={{flex:1}}>
                       <Button transparent >
@@ -67,7 +100,7 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
              
              
              <View>
-             <Text style={{fontSize:50 , color:'white'}}>2,900.00</Text>
+             <Text style={{fontSize:50 , color:'white'}}>&#8372; 2,900.00</Text>
              </View>
             
              <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
