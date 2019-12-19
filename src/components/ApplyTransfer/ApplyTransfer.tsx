@@ -6,9 +6,9 @@ import {View, Switch} from 'react-native'
 class ApplyTransfer extends React.Component<{},{}>{
   render(){
     return(
-      <View style={{flex:1, borderWidth:1, flexDirection:'column',justifyContent:'flex-start'}} >
+      <View style={{flex:1, margin:20, flexDirection:'column',justifyContent:'flex-start'}} >
         {/* <Form style={{display:'flex',justifyContent:'center', alignContent:'center'}}> */}
-          <View style={{display:'flex', borderWidth:3,flexDirection:'row', justifyContent:'center'}}>
+          <View style={{display:'flex',flexDirection:'row', justifyContent:'center'}}>
           <Text>На картку іншого банку</Text>
           </View>
           
@@ -21,7 +21,7 @@ class ApplyTransfer extends React.Component<{},{}>{
           <Text style={{color:'gray'}}>1234</Text>
         </View>
         <View >
-        <Item style={{ marginLeft:"25%", marginRight:"25%", display:'flex',flexDirection:'row'}}>
+        <Item style={{ marginLeft:"25%", marginRight:"25%", marginTop:10, display:'flex',flexDirection:'row'}}>
           <Input style={{textAlign:'center'}} placeholder="Введіть суму" /><Text>грн</Text>
        </Item>
         </View>
@@ -31,7 +31,7 @@ class ApplyTransfer extends React.Component<{},{}>{
         </View>
        
         <View>
-        <Button onPress={() => this.props.history.push('/apply')} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
+        <Button onPress={() => this.props.history.push('/verification')} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
             <Text style={{ color:'black'}}>Підтвердити</Text>
          
             <Icon style={{ color:'black'}} name ="ios-arrow-forward"></Icon>

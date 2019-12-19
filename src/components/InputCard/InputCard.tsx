@@ -26,9 +26,9 @@ class ConnectedInputCard extends React.Component<{},{}>{
       return(<Redirect to ="/apply" />)
     }
     return(
-      <View style={{flex:1}}>
+      <View style={{flex:1,marginTop:10, marginLeft:20, marginRight:20}}>
           
-          <Form style={{display:'flex', flexDirection:'column', justifyContent:'center', margin:15}}>
+          <Form style={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
             <Item picker style={{marginTop:5}}>
             <Picker
               mode="dropdown"
@@ -46,12 +46,13 @@ class ConnectedInputCard extends React.Component<{},{}>{
             </Picker>
             </Item>
          
-            <Item style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginTop:10}}>
+            <Item style={{display:'flex', flexDirection:'row', justifyContent:'space-around', 
+            marginTop:10}}>
 
-              <Input placeholder="1234" maxLength={4} ></Input>
-              <Input placeholder="5678" maxLength={4} ></Input>
-              <Input placeholder="9012" maxLength={4} ></Input>
-              <Input placeholder="3456" maxLength={4} ></Input>
+              <Input style={{textAlign:'center'}} placeholder="1234" maxLength={4} ></Input>
+              <Input style={{textAlign:'center'}} placeholder="5678" maxLength={4} ></Input>
+              <Input  style={{textAlign:'center'}} placeholder="9012" maxLength={4} ></Input>
+              <Input  style={{textAlign:'center'}} placeholder="3456" maxLength={4} ></Input>
 
             </Item>
             
