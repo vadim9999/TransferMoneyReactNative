@@ -20,18 +20,22 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
     console.log("location header", this.props.location);
     
     return (
-      <View style={{borderWidth:3, backgroundColor:"#6ca8f8", }}>
-            <View style={{borderWidth:1,}}>
+      <View style={{ backgroundColor:"#6ca8f8", }}>
+            <View >
             <Header transparent>
+
+              
             <Left style={{flex:2}}>
             
               <Button onPress={()=> this.props.history.push("/")} transparent>
+          
               <Icon name='ios-arrow-back' ></Icon>
               
             </Button>
              
             
             </Left>
+           
                     <Body style={{flex:3}}>
                     <Title>Грошові перекази</Title>
                     </Body>
@@ -42,9 +46,9 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
                     </Right>
             </Header>
             </View>
-           <View style={{borderWidth:1,display:'flex', flexDirection:'row', justifyContent:'center'}}>
+           <View style={{display:'flex', flexDirection:'row', justifyContent:'center', marginBottom:20}}>
 
-             <View style={{borderWidth:1, display:"flex", flexDirection:'column'}}>
+             <View style={{ display:"flex", flexDirection:'column'}}>
 
             
              {

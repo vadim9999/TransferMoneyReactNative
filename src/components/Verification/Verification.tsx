@@ -31,7 +31,7 @@ class Verification extends React.Component<{},{}>{
           <Input style={{textAlign:'center'}} placeholder="4" maxLength={1} />
 
 </Item> 
-          <Button onPress={() => this.props.history.push('/')} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
+          <Button onPress={() => this.props.history.push('/success')} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
             <Text style={{ color:'black'}}>ПЕРЕКАЗАТИ</Text>
          
             <Icon style={{ color:'black'}} name ="ios-arrow-forward"></Icon>
