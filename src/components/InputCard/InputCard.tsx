@@ -26,7 +26,7 @@ class ConnectedInputCard extends React.Component<{},{}>{
       return(<Redirect to ="/apply" />)
     }
     return(
-      <View>
+      <View style={{flex:1}}>
           
           <Form style={{display:'flex', flexDirection:'column', justifyContent:'center', margin:15}}>
             <Item picker style={{marginTop:5}}>

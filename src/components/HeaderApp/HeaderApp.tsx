@@ -20,8 +20,8 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
     console.log("location header", this.props.location);
     
     return (
-      <View style={{backgroundColor:"#6ca8f8", }}>
-            <View >
+      <View style={{borderWidth:3, backgroundColor:"#6ca8f8", }}>
+            <View style={{borderWidth:1,}}>
             <Header transparent>
             <Left style={{flex:2}}>
             
@@ -42,14 +42,16 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
                     </Right>
             </Header>
             </View>
-           <View style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+           <View style={{borderWidth:1,display:'flex', flexDirection:'row', justifyContent:'center'}}>
 
-             
+             <View style={{borderWidth:1, display:"flex", flexDirection:'column'}}>
+
+            
              {
                this.props.location.pathname === '/' ? (
-                <View style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+                <View style={{display:'flex', flexDirection: 'row', justifyContent:'space-between' }}>
                   <View >
-                  <Text style={{color:'white'}}>Golden Dream</Text>
+                  <Text style={{ color:'white'}}>Golden Dream</Text>
                   </View>
                   <View>
                   <Text style={{color:'white'}}> 01/09</Text>
@@ -64,11 +66,12 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
              <Text style={{fontSize:50 , color:'white'}}>2,900.00</Text>
              </View>
             
-             <View style={{display:'flex', flexDirection:'row',justifyContent:'center'}}>
-              <Text style={{color:'white'}}>  XXXX</Text>
-              <Text style={{color:'white'}}>  XXXX</Text>
-              <Text style={{color:'white'}}>  XXXX</Text>
-              <Text style={{color:'white'}}>  3456</Text>
+             <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+              <Text style={{color:'white'}}>XXXX</Text>
+              <Text style={{color:'white'}}>XXXX</Text>
+              <Text style={{color:'white'}}>XXXX</Text>
+              <Text style={{color:'white'}}>3456</Text>
+            </View>
             </View>
            </View>
             
