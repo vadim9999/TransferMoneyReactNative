@@ -18,7 +18,10 @@ describe('Testing ',()=>{
 
   it('testing button on click', ()=>{
     const {getByText} = render(<Home />)
-    console.log(getByText('Далі'));
+    // const button = getByText('Далі')
+
+    // fireEvent.press(button)
+    // console.log(button);
   })
 
   it.skip('test renders correctly',()=>{
