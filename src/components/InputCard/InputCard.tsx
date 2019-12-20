@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Text, Icon, Item, Input, Picker, Form } from "native-base";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { withRouter } from "react-router-native";
 import { connect } from "react-redux";
 import { addTransferNumberCard, addOptionTransfer } from "../../actions/index";
