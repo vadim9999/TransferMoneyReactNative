@@ -1,6 +1,7 @@
 const initialState = {
   numberCard:[],
-  option:'other'
+  option:'other',
+  commission: '24,50'
 }
 
 const transfer= (state=initialState, action) =>{

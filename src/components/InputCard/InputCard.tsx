@@ -12,7 +12,8 @@ import store from '../../store'
 import {addTransferNumberCard, addOptionTransfer} from '../../actions/index'
 const mapStateToProps = (state) =>{
   return {
-    numberCard:state.transfer.numberCard
+    numberCard:state.transfer.numberCard,
+    option:state.transfer.option
   }
 }
 
@@ -24,6 +25,8 @@ const mapDispatchToProps = (dispatch) =>{
 }
 interface InputCardState {
   numberCard: string[]
+  selected: string;
+  error:boolean;
 
 }
 
@@ -40,7 +43,8 @@ class ConnectedInputCard extends React.Component<InputCardProps,InputCardState>{
     super(props)
     this.state = {
       numberCard:[],
-      selected:'other' 
+      selected:'other' ,
+      error: false
     }
   }
   // componentDidMount = () =>{
@@ -60,7 +64,8 @@ class ConnectedInputCard extends React.Component<InputCardProps,InputCardState>{
     if(prevState.numberCard.length === 0 && nextProps.numberCard.length >0){
       console.log("Derived");
       return {
-        numberCard:[...nextProps.numberCard]
+        numberCard:[...nextProps.numberCard],
+        selected:nextProps.option
       }
       
     }
@@ -99,12 +104,16 @@ class ConnectedInputCard extends React.Component<InputCardProps,InputCardState>{
   }
   onSave = () =>{
     let card = this.state.numberCard
-    if(card.length>0){
-      if(card[0].length ===4 && card[1].length ===4 && card[2].length ===4 && card[3].length ===4){
+    
+      if(card.length>0 && card[0].length + card[1].length + card[2].length + card[3].length ===16){
         this.props.addTransferNumberCard([...card])
         this.props.addOptionTransfer(this.state.selected)
         this.props.history.push('/apply')
-      }
+      
+    }else {
+      this.setState({
+        error:true
+      })
     }
     
 
@@ -134,20 +143,70 @@ class ConnectedInputCard extends React.Component<InputCardProps,InputCardState>{
             </Picker>
             </Item>
          
-            <Item style={{display:'flex', flexDirection:'row', justifyContent:'space-around', 
-            marginTop:10}}>
+            <View style={{   flexDirection:'row', }} >
+              <Item style={{flex:1}} floatingLabel>
+              <Input 
+               getRef={input => {
+                this.box1 = input;
+              }}
+              onSubmitEditing={() => {
+                this.box2._root.focus();
+              }}
+              returnKeyType={"next"}
+
+              value={this.state.numberCard[0]} onChangeText={(e)=>this.onChangeInput(e,'block1')} style={{textAlign:'center'}} placeholder="1234" maxLength={4} ></Input>
+                           
+              </Item>
+             <Item style={{flex:1}} floatingLabel>
+
+           
+              <Input 
+               getRef={input => {
+                this.box2 = input;
+              }}
+              onSubmitEditing={() => {
+                this.box3._root.focus();
+              }}
+              returnKeyType={"next"}
+
+              value={this.state.numberCard[1]} onChangeText={(e)=>this.onChangeInput(e,'block2')} style={{textAlign:'center'}} placeholder="5678" maxLength={4} ></Input>
+                </Item>
+
+
+
+                <Item style={{flex:1}} floatingLabel>
+                <Input 
+                
+                getRef={input=>{
+                  this.box3 = input
+                }}
+
+                onSubmitEditing={()=>{
+                  this.box4._root.focus();
+                }}
+                returnKeyType={"next"}
+                value={this.state.numberCard[2]} onChangeText={(e)=>this.onChangeInput(e,'block3')} style={{textAlign:'center'}} placeholder="9012" maxLength={4} ></Input>
               
-              <Input value={this.state.numberCard[0]} onChangeText={(e)=>this.onChangeInput(e,'block1')} style={{textAlign:'center'}} placeholder="1234" maxLength={4} ></Input>
-              <Input value={this.state.numberCard[1]} onChangeText={(e)=>this.onChangeInput(e,'block2')} style={{textAlign:'center'}} placeholder="5678" maxLength={4} ></Input>
-              <Input value={this.state.numberCard[2]} onChangeText={(e)=>this.onChangeInput(e,'block3')} style={{textAlign:'center'}} placeholder="9012" maxLength={4} ></Input>
-              <Input value={this.state.numberCard[3]} onChangeText={(e)=>this.onChangeInput(e,'block4')} style={{textAlign:'center'}} placeholder="3456" maxLength={4} ></Input>
+                </Item>
+
+             <Item style={{flex:1}} floatingLabel>
+             <Input 
+             getRef={input =>{
+               this.box4 = input;
+             }}
+             onSubmitEditing={this.onSave}
+             value={this.state.numberCard[3]} onChangeText={(e)=>this.onChangeInput(e,'block4')} style={{textAlign:'center'}} placeholder="3456" maxLength={4} ></Input>
+              
+             </Item>
               
               
 
-            </Item>
+            </View>
             
           
-            <Button onPress={this.onSave} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
+            <Button 
+            
+            onPress={this.onSave} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
             <Text style={{ color:'black'}}>Далі</Text>
          
             <Icon style={{ color:'black'}} name ="ios-arrow-forward"></Icon>
