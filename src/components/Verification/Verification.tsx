@@ -1,58 +1,92 @@
-import React from 'react'
-import { Button, Container, Header, Text, Left, Icon, Body, Title,Item, Right,Input , Content, Picker, Form } from 'native-base'
+import React from "react";
 import {
-  StyleSheet, View,
-  StatusBar,
-  Platform,
-  TouchableOpacity,
+  Button,
+  Text,
+  Icon,
+  Item,
+  Input,
+} from "native-base";
+import {
+  View,
   Image
-} from 'react-native';
+} from "react-native";
+import styles from './styles'
 
+import {withRouter} from 'react-router-native'
 
-class Verification extends React.Component<{},{}>{
-  constructor(props){
-    super(props)
+interface VerificationProps{
+history:{push:any}
+}
+interface VerificationState{
+
+}
+class Verification extends React.Component<VerificationProps, VerificationState> {
+  constructor(props) {
+    super(props);
   }
 
-  onClick = () =>{
+  onClick = () => {
+    const {history} = this.props;
+   history.push("/success");
+  };
 
-    this.props.history.push('/success')
-
-  }
-  render(){
-    return(
-      <View style={{ flex:1, margin:20}}>
-        <View style={{ alignItems:'center' }}>
-          <Image 
-          style={{width: 50, height: 50 }}
-          source={require('./message.png')} />
-          <Text style={{textAlign:'center', fontSize:13,marginTop:20}}>
-            Введіть пароль з СМС, що надіслано на Ваш номер
-            Ніколи не повідомляйте йогоо іншим особам
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.block}>
+          <Image
+            style={styles.image}
+            source={require("./message.png")}
+          />
+          <Text style={styles.textInfo}>
+            Введіть пароль з СМС, що надіслано на Ваш номер Ніколи не
+            повідомляйте йогоо іншим особам
           </Text>
-          <Text style={{color:'gray', alignSelf:'flex-start', marginTop:25, fontSize:13}}>ПАРОЛЬ З СМС</Text>
-          <Item style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginTop:10}}>
-            
-          <Input style={{textAlign:'center'}} placeholder="1" maxLength={1} />
+          <Text
+            style={styles.message}
+          >
+            ПАРОЛЬ З СМС
+          </Text>
+          <Item
+            style={styles.item}
+          >
+            <Input
+              style={styles.input}
+              placeholder="1"
+              maxLength={1}
+            />
 
-          <Input style={{textAlign:'center'}} placeholder="2" maxLength={1} />
-          <Input style={{textAlign:'center'}} placeholder="3" maxLength={1} />
-          <Input style={{textAlign:'center'}} placeholder="4" maxLength={1} />
-      
-</Item> 
-          <Button onPress={this.onClick} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
-            <Text style={{ color:'black'}}>ПЕРЕКАЗАТИ</Text>
-         
-            <Icon style={{ color:'black'}} name ="ios-arrow-forward"></Icon>
-            </Button>
-          
+            <Input
+              style={styles.input}
+              placeholder="2"
+              maxLength={1}
+            />
+            <Input
+              style={styles.input}
+              placeholder="3"
+              maxLength={1}
+            />
+            <Input
+              style={styles.input}
+              placeholder="4"
+              maxLength={1}
+            />
+          </Item>
+          <Button
+            onPress={this.onClick}
+            style={styles.button}
+            transparent
+            full
+            rounded
+          >
+            <Text style={styles.textColor}>ПЕРЕКАЗАТИ</Text>
+
+            <Icon style={styles.textColor} name="ios-arrow-forward"></Icon>
+          </Button>
         </View>
-          
       </View>
-      
-    )
+    );
   }
 }
 
-
-export default Verification
+export default withRouter(Verification);

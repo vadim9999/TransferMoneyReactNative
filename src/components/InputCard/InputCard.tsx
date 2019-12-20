@@ -63,7 +63,9 @@ class ConnectedInputCard extends React.Component<
           numberCard: [...nextProps.numberCard],
           selected: nextProps.option
         };
-      }
+      }else return null
+    }else{
+      return null;
     }
     return null;
   };

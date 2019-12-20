@@ -1,73 +1,84 @@
-import React from 'react'
-import { Button, Container, Header,FooterTab,Footer, Text, Left, Icon, Body, Title,Item, Right,Input , Content, Picker, Form } from 'native-base'
+import React from "react";
 import {
-  StyleSheet, View,
-  StatusBar,
-  Platform,
-  TouchableOpacity,
+  Button,
+  Text,
+  Icon,
+} from "native-base";
+import {
+  View,
   Image
-} from 'react-native';
-import {resetTransfer } from '../../actions'
-import {withRouter} from 'react-router-native'
+} from "react-native";
+import { resetTransfer } from "../../actions";
+import { withRouter } from "react-router-native";
+import { connect } from "react-redux";
+import styles from './styles'
 
-import {connect} from 'react-redux'
-
-const mapDispatchToProps = (dispatch) =>{
-
+const mapDispatchToProps = dispatch => {
   return {
     resetTransfer: () => dispatch(resetTransfer())
-  }
+  };
+};
+
+interface VerificationSuccessProps{
+  resetTransfer:any;
+  history:{push:any}
 }
 
-class ConnectedVerificationSuccess extends React.Component<{},{}>{
-  componentDidMount = () =>{
-    this.props.resetTransfer()
-  }
-  render(){
+interface VerificationSuccessState{
+
+}
+class ConnectedVerificationSuccess extends React.Component<VerificationSuccessProps, VerificationSuccessState> {
+  componentDidMount = () => {
+    this.props.resetTransfer();
+  };
+
+  render() {
+    const {history} = this.props;
     return (
-      <View style={{flex: 1, flexDirection:'column', margin:20, justifyContent:'flex-end' }}>
-        
-        <View style={{ marginBottom:35}}>
-        <View style={{ alignItems:'center'}}>
-          <Image
-          style={{width: 130, height: 130 }}
-          source={require('./success.png')}
-          />
-        
-        </View>
-        <View style={{ alignItems:'center'}}>
-          <Text style={{color:'blue', fontSize:30}}>Успішно!</Text>
-          <Text style={{fontSize:14}}>Плітіж надіслано на опрацювання</Text>
+      <View
+        style={styles.container}
+      >
+        <View style={styles.imageBlock}>
+          <View style={{ alignItems: "center" }}>
+            <Image
+              style={styles.image}
+              source={require("./success.png")}
+            />
+          </View>
+          <View style={styles.messageBlock}>
+            <Text style={styles.title}>Успішно!</Text>
+            <Text style={styles.message}>
+              Плітіж надіслано на опрацювання
+            </Text>
+          </View>
         </View>
 
-        
-        </View>
-        
-    
         <View>
-        <View style={{ alignContent:'flex-end', alignItems:'center'}}>
-          <Text style={{fontSize:14}}>Шановний "Користувач"!</Text>
-          <Text style={{fontSize:14}}>Чи бажаєте додати цю операцію до Ваших шаблонів?</Text>
-        </View>
-        
-        <Button onPress={() => this.props.history.push('/')} style={{display:'flex', 
-        justifyContent:'center', marginTop:10, backgroundColor:'white', 
-        borderWidth:1 }} transparent full rounded >
+          <View style={styles.question}>
+            <Text style={styles.message}>Шановний "Користувач"!</Text>
+            <Text style={styles.message}>
+              Чи бажаєте додати цю операцію до Ваших шаблонів?
+            </Text>
+          </View>
 
-            <Icon style={{ color:'black'}} name ="calendar"></Icon>
-            <Text style={{ color:'black'}}>ЗБЕРЕГТИ ЯК ШАБЛОН</Text>
-         
-            
-            </Button>
+          <Button
+            onPress={() => history.push("/")}
+            style={styles}
+            transparent
+            full
+            rounded
+          >
+            <Icon style={styles.textColor} name="calendar"></Icon>
+            <Text style={styles.textColor}>ЗБЕРЕГТИ ЯК ШАБЛОН</Text>
+          </Button>
         </View>
-        
-
-       
       </View>
-      
-    )
+    );
   }
 }
 
-const VerificationSuccess = connect(null,mapDispatchToProps)(ConnectedVerificationSuccess)
-export default withRouter(VerificationSuccess)
+const VerificationSuccess = connect(
+  null,
+  mapDispatchToProps
+)(ConnectedVerificationSuccess);
+export default withRouter(VerificationSuccess);
