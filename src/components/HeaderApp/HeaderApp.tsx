@@ -63,6 +63,11 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
 
    
   }
+   numberWithCommas =(money) => {
+
+    return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
   render(){
     const {location, history, numberCard, money}:any = this.props;
 
@@ -132,7 +137,7 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
              
              
              <View>
-            <Text style={{fontSize:50 , color:'white'}}>&#8372; {money}</Text>
+  <Text style={{fontSize:50 , color:'white'}}>&#8372; {this.numberWithCommas(money)}</Text>
              </View>
             
              <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>

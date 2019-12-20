@@ -1,6 +1,6 @@
 const initialState = {
   numberCard: ['1234','5678','9876','5432'],
-  money: '2,900.00',
+  money: 2900,
   
 }
 

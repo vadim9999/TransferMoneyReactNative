@@ -11,3 +11,23 @@ export const addOptionTransfer = (payload) =>{
     payload
   }
 }
+
+export const addCommission = (payload) =>{
+  return {
+    type: "ADD_COMMISSION",
+    payload
+  }
+}
+
+export const addAmount = (payload) =>{
+  return {
+      type:'ADD_AMOUNT',
+      payload
+  }
+}
+
+export const resetTransfer = () =>{
+  return {
+    type:"RESET_TRANSFER"
+  }
+}

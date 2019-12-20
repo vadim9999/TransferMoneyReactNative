@@ -7,8 +7,22 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native';
+import {resetTransfer } from '../../actions'
+import {withRouter} from 'react-router-native'
 
-class VerificationSuccess extends React.Component<{},{}>{
+import {connect} from 'react-redux'
+
+const mapDispatchToProps = (dispatch) =>{
+
+  return {
+    resetTransfer: () => dispatch(resetTransfer())
+  }
+}
+
+class ConnectedVerificationSuccess extends React.Component<{},{}>{
+  componentDidMount = () =>{
+    this.props.resetTransfer()
+  }
   render(){
     return (
       <View style={{flex: 1, flexDirection:'column', margin:20, justifyContent:'flex-end' }}>
@@ -55,4 +69,5 @@ class VerificationSuccess extends React.Component<{},{}>{
   }
 }
 
-export default VerificationSuccess
+const VerificationSuccess = connect(null,mapDispatchToProps)(ConnectedVerificationSuccess)
+export default withRouter(VerificationSuccess)

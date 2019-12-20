@@ -1,49 +1,49 @@
 import React from 'react'
-import { Button, Container, Header, Text, Left, Icon, Body, Title,Item, Right,Input , Content, Picker, Form, InputGroup } from 'native-base'
+import { Button, Container, Header, Text, Left, Icon, Body, Title, Item, Right, Input, Content, Picker, Form, InputGroup } from 'native-base'
 import {
   StyleSheet, View,
   StatusBar,
   Platform,
   TouchableOpacity,
 } from 'react-native';
-import {Link, Redirect, withRouter} from 'react-router-native'
-import {connect} from 'react-redux'
+import { Link, Redirect, withRouter } from 'react-router-native'
+import { connect } from 'react-redux'
 import store from '../../store'
-import {addTransferNumberCard, addOptionTransfer} from '../../actions/index'
-const mapStateToProps = (state) =>{
+import { addTransferNumberCard, addOptionTransfer } from '../../actions/index'
+const mapStateToProps = (state) => {
   return {
-    numberCard:state.transfer.numberCard,
-    option:state.transfer.option
+    numberCard: state.transfer.numberCard,
+    option: state.transfer.option
   }
 }
 
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
   return {
     addTransferNumberCard: (numberCard) => dispatch(addTransferNumberCard(numberCard)),
-    addOptionTransfer: (option) =>dispatch(addOptionTransfer(option))
+    addOptionTransfer: (option) => dispatch(addOptionTransfer(option))
   }
 }
 interface InputCardState {
   numberCard: string[]
   selected: string;
-  error:boolean;
+  error: boolean;
 
 }
 
 interface InputCardProps {
-  location:object;
-  history:{push:any};
-  numberCard:string[]
-  addTransferNumberCard:any;
+  location: object;
+  history: { push: any };
+  numberCard: string[]
+  addTransferNumberCard: any;
   addOptionTransfer: any;
 }
 
-class ConnectedInputCard extends React.Component<InputCardProps,InputCardState>{
-  constructor(props){
+class ConnectedInputCard extends React.Component<InputCardProps, InputCardState>{
+  constructor(props) {
     super(props)
     this.state = {
-      numberCard:[],
-      selected:'other' ,
+      numberCard: [],
+      selected: 'other',
       error: false
     }
   }
@@ -54,37 +54,38 @@ class ConnectedInputCard extends React.Component<InputCardProps,InputCardState>{
   //     // })
   //   }
   // }
- static getDerivedStateFromProps = (nextProps,prevState) =>{
-   console.log("call ******");
-  //  console.log("prevState", prevState);
-  //  console.log("prevProps", nextProps);
-   
-   
-   if(prevState.numberCard !== undefined && nextProps.numberCard !== undefined){
-    if(prevState.numberCard.length === 0 && nextProps.numberCard.length >0){
-      console.log("Derived");
-      return {
-        numberCard:[...nextProps.numberCard],
-        selected:nextProps.option
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    console.log("call ******");
+    //  console.log("prevState", prevState);
+    //  console.log("prevProps", nextProps);
+
+
+    if (prevState.numberCard !== undefined && nextProps.numberCard !== undefined) {
+      if (prevState.numberCard.length === 0 && nextProps.numberCard.length > 0) {
+        console.log("Derived");
+        return {
+          
+          numberCard: [...nextProps.numberCard],
+          selected: nextProps.option
+        }
+
       }
-      
     }
-   }
-   return null
-}
+    return null
+  }
   // getSnapshotBeforeUpdate = (prevProps, prevState) =>{
   //   if(prevPro);
-    
+
   //   return null;
   // }
- 
-  
-  onChangeInput = (value,target) =>{
+
+
+  onChangeInput = (value, target) => {
     console.log(value);
-    console.log("target",target);
+    console.log("target", target);
     let card = this.state.numberCard;
 
-    switch(target){
+    switch (target) {
       case 'block1':
         card[0] = value;
         break;
@@ -95,38 +96,38 @@ class ConnectedInputCard extends React.Component<InputCardProps,InputCardState>{
         card[2] = value;
         break;
       case 'block4':
-          card[3] = value;
+        card[3] = value;
         break;
     }
     this.setState({
       numberCard: [...card]
     })
   }
-  onSave = () =>{
+  onSave = () => {
     let card = this.state.numberCard
-    
-      if(card.length>0 && card[0].length + card[1].length + card[2].length + card[3].length ===16){
-        this.props.addTransferNumberCard([...card])
-        this.props.addOptionTransfer(this.state.selected)
-        this.props.history.push('/apply')
-      
-    }else {
+
+    if (card.length === 4 && card[0].length + card[1].length + card[2].length + card[3].length === 16) {
+      this.props.addTransferNumberCard([...card])
+      this.props.addOptionTransfer(this.state.selected)
+      this.props.history.push('/apply')
+
+    } else {
       this.setState({
-        error:true
+        error: true
       })
     }
-    
+
 
   }
-  render(){
-    
-  
+  render() {
+
+
     console.log("state****", this.state);
-    return(
-      <View style={{flex:1,marginTop:10, marginLeft:20, marginRight:20}}>
-          
-          <Form style={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
-            <Item picker style={{marginTop:5}}>
+    return (
+      <View style={{ flex: 1, marginTop: 10, marginLeft: 20, marginRight: 20 }}>
+
+        <Form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Item picker style={{ marginTop: 5 }}>
             <Picker
               mode="dropdown"
               iosIcon={<Icon name="arrow-down" />}
@@ -135,94 +136,94 @@ class ConnectedInputCard extends React.Component<InputCardProps,InputCardState>{
               placeholderIconColor="#007aff"
               style={{ width: undefined }}
               selectedValue={this.state.selected}
-              onValueChange={(value)=>this.setState({selected:value})}
+              onValueChange={(value) => this.setState({ selected: value })}
             >
               <Picker.Item label="На картку іншого банку VISA\MIC" value="other" />
               <Picker.Item label="На картку банку" value="current" />
-              
+
             </Picker>
+          </Item>
+
+          <View style={{ flexDirection: 'row', }} >
+            <Item style={{ flex: 1 }} error={this.state.error} floatingLabel>
+              <Input
+                getRef={input => {
+                  this.box1 = input;
+                }}
+                onSubmitEditing={() => {
+                  this.box2._root.focus();
+                }}
+                returnKeyType={"next"}
+
+                value={this.state.numberCard[0]} onChangeText={(e) => this.onChangeInput(e, 'block1')} style={{ textAlign: 'center' }} placeholder="1234" maxLength={4} ></Input>
+
             </Item>
-         
-            <View style={{   flexDirection:'row', }} >
-              <Item style={{flex:1}} floatingLabel>
-              <Input 
-               getRef={input => {
-                this.box1 = input;
-              }}
-              onSubmitEditing={() => {
-                this.box2._root.focus();
-              }}
-              returnKeyType={"next"}
+            <Item style={{ flex: 1 }} floatingLabel error={this.state.error}>
 
-              value={this.state.numberCard[0]} onChangeText={(e)=>this.onChangeInput(e,'block1')} style={{textAlign:'center'}} placeholder="1234" maxLength={4} ></Input>
-                           
-              </Item>
-             <Item style={{flex:1}} floatingLabel>
 
-           
-              <Input 
-               getRef={input => {
-                this.box2 = input;
-              }}
-              onSubmitEditing={() => {
-                this.box3._root.focus();
-              }}
-              returnKeyType={"next"}
+              <Input
+                getRef={input => {
+                  this.box2 = input;
+                }}
+                onSubmitEditing={() => {
+                  this.box3._root.focus();
+                }}
+                returnKeyType={"next"}
 
-              value={this.state.numberCard[1]} onChangeText={(e)=>this.onChangeInput(e,'block2')} style={{textAlign:'center'}} placeholder="5678" maxLength={4} ></Input>
-                </Item>
+                value={this.state.numberCard[1]} onChangeText={(e) => this.onChangeInput(e, 'block2')} style={{ textAlign: 'center' }} placeholder="5678" maxLength={4} ></Input>
+            </Item>
 
 
 
-                <Item style={{flex:1}} floatingLabel>
-                <Input 
-                
-                getRef={input=>{
+            <Item style={{ flex: 1 }} floatingLabel error={this.state.error}> 
+              <Input
+
+                getRef={input => {
                   this.box3 = input
                 }}
 
-                onSubmitEditing={()=>{
+                onSubmitEditing={() => {
                   this.box4._root.focus();
                 }}
                 returnKeyType={"next"}
-                value={this.state.numberCard[2]} onChangeText={(e)=>this.onChangeInput(e,'block3')} style={{textAlign:'center'}} placeholder="9012" maxLength={4} ></Input>
-              
-                </Item>
+                value={this.state.numberCard[2]} onChangeText={(e) => this.onChangeInput(e, 'block3')} style={{ textAlign: 'center' }} placeholder="9012" maxLength={4} ></Input>
 
-             <Item style={{flex:1}} floatingLabel>
-             <Input 
-             getRef={input =>{
-               this.box4 = input;
-             }}
-             onSubmitEditing={this.onSave}
-             value={this.state.numberCard[3]} onChangeText={(e)=>this.onChangeInput(e,'block4')} style={{textAlign:'center'}} placeholder="3456" maxLength={4} ></Input>
-              
-             </Item>
-              
-              
+            </Item>
 
-            </View>
-            
-          
-            <Button 
-            
-            onPress={this.onSave} style={{display:'flex', justifyContent:'center', marginTop:15, backgroundColor:'white', borderWidth:1 }} transparent full rounded >
-            <Text style={{ color:'black'}}>Далі</Text>
-         
-            <Icon style={{ color:'black'}} name ="ios-arrow-forward"></Icon>
-            </Button>
-          
-            
-          
-           
-            
-          </Form>
-        
- 
-          {/* <Button onPress={this.onClick}>
+            <Item style={{ flex: 1 }} floatingLabel error={this.state.error}>
+              <Input
+                getRef={input => {
+                  this.box4 = input;
+                }}
+                onSubmitEditing={this.onSave}
+                value={this.state.numberCard[3]} onChangeText={(e) => this.onChangeInput(e, 'block4')} style={{ textAlign: 'center' }} placeholder="3456" maxLength={4} ></Input>
+
+            </Item>
+
+
+
+          </View>
+
+
+          <Button
+
+            onPress={this.onSave} style={{ display: 'flex', justifyContent: 'center', marginTop: 15, backgroundColor: 'white', borderWidth: 1 }} transparent full rounded >
+            <Text style={{ color: 'black' }}>Далі</Text>
+
+            <Icon style={{ color: 'black' }} name="ios-arrow-forward"></Icon>
+          </Button>
+
+
+
+
+
+        </Form>
+
+
+        {/* <Button onPress={this.onClick}>
               <Text>Далі</Text>
             </Button> */}
-          </View>
+      </View>
     )
   }
 }

@@ -1,7 +1,8 @@
 const initialState = {
   numberCard:[],
   option:'other',
-  commission: '24,50'
+  commission: false,
+  amount: 0
 }
 
 const transfer= (state=initialState, action) =>{
@@ -18,8 +19,25 @@ const transfer= (state=initialState, action) =>{
           ...state,
           option: payload
         }
+        
+      case 'ADD_COMMISSION':
+        return {
+          ...state,
+          commission: payload
+        }
+      case 'ADD_AMOUNT':
+        return {
+          ...state,
+          amount: payload
+        }
+      case 'RESET_TRANSFER':
+        return {
+          ...initialState,
+        }
+    default:
+      return state
   }
-  return state
+  
 }
 
 export default transfer
