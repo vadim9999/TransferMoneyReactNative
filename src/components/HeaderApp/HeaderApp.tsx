@@ -109,7 +109,9 @@ class ConnectedHeaderApp extends React.Component<HeaderAppProps, HeaderAppState>
               </Right>
             </Header>
           </View>
-          <View
+
+          {location.pathname === '/success'? null: (
+            <View
             style={styles.content}
           >
             <View style={styles.cardNameBlock}>
@@ -131,17 +133,23 @@ class ConnectedHeaderApp extends React.Component<HeaderAppProps, HeaderAppState>
                   &#8372; {this.numberWithCommas(money)}
                 </Text>
               </View>
-
-              <View
-                style={styles.numberCard}
-              >
-                <Text style={styles.text}> XXXX</Text>
-                <Text style={styles.text}> XXXX</Text>
-                <Text style={styles.text}> XXXX</Text>
-                <Text style={styles.text}> {numberCard[3]}</Text>
-              </View>
+              {
+                (location.pathname === '/verification'?null:(
+                  <View
+                  style={styles.numberCard}
+                >
+                  <Text style={styles.text}> XXXX</Text>
+                  <Text style={styles.text}> XXXX</Text>
+                  <Text style={styles.text}> XXXX</Text>
+                  <Text style={styles.text}> {numberCard[3]}</Text>
+                </View>
+                ))
+              }
+              
             </View>
           </View>
+          )}
+          
         </View>
       </LinearGradient>
     );
