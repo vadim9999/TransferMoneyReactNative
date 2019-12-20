@@ -1,18 +1,18 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     margin: 20,
     flexDirection: "column",
     justifyContent: "flex-start"
   },
-  optionBlock:{
+  optionBlock: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center"
   },
-  numberCard:{
+  numberCard: {
     display: "flex",
     marginTop: 20,
     marginLeft: 10,
@@ -20,30 +20,30 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around"
   },
-  field:{
+  field: {
     marginLeft: "25%",
     marginRight: "25%",
     marginTop: 10,
     display: "flex",
     flexDirection: "row"
   },
-  checkbox:{
+  checkbox: {
     marginTop: 15,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     flexWrap: "wrap"
   },
-  button:{
+  button: {
     display: "flex",
     justifyContent: "center",
     marginTop: 15,
     backgroundColor: "white",
     borderWidth: 1
   },
-  text:{
+  text: {
     color: "black"
   }
-})
+});
 
-export default styles
+export default styles;

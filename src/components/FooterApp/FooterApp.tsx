@@ -1,34 +1,47 @@
 import React from 'react'
 import { Button, Text,Footer,FooterTab, Icon} from 'native-base'
 import {withRouter} from 'react-router-native'
-class FooterApp extends React.Component<{},{}>{
+import styles from './styles'
 
+interface FooterAppState{
+  onClick:any;
+}
+interface FooterAppProps{
+  location:{pathname:string};
+  history:{push:any};
+
+}
+class FooterApp extends React.Component<FooterAppProps,FooterAppState>{
+
+  onClick = () =>{
+    const {location, history} = this.props;
+    return location.pathname === '/success'? ()=>history.push('/'):null
+  }
   render(){
-    const {history, location}:any = this.props;
-
+  
     return(
       <Footer>
           <FooterTab style={{backgroundColor:'white'}}>
             
             <Button vertical>
               <Icon name="filing" />
-              <Text style={{fontSize:6}}>Карти</Text>
+              <Text style={styles.text}>Карти</Text>
             </Button>
             <Button vertical>
               <Icon active name="cash" />
-              <Text style={{fontSize:6}}>Поповнення</Text>
+              <Text style={styles.text}>Поповнення</Text>
             </Button>
-            <Button vertical onPress={location.pathname === '/success'? ()=>history.push('/'):null} active>
+            <Button vertical onPress={this.onClick} active>
               <Icon name="repeat" />
-              <Text style={{fontSize:6}}>Перекази</Text>
+              <Text style={styles.text}>Перекази</Text>
             </Button>
             <Button vertical>
               <Icon name="tv" />
-              <Text style={{fontSize:6}}>Платежі</Text>
+              <Text style={styles.text}>Платежі</Text>
             </Button>
             <Button vertical>
               <Icon name="apps" />
-              <Text style={{fontSize:6}}>Інше</Text>
+              <Text style={styles.text}>Інше</Text>
             </Button>
           </FooterTab>
         </Footer>
