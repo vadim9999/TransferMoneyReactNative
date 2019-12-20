@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   messageBlock: { alignItems: "center" },
   title: { color: "blue", fontSize: 30 },
   message: { fontSize: 14 },
-  questiong: { alignContent: "flex-end", alignItems: "center" },
+  question: { alignContent: "flex-end", alignItems: "center"},
   button: {
     display: "flex",
     justifyContent: "center",

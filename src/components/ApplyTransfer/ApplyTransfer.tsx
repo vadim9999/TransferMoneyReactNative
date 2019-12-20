@@ -79,6 +79,7 @@ class ConnectedApplyTransfer extends React.Component<ApplyTransferProps, ApplyCo
         }
       }
     }
+    return null;
   };
 
   onChangeText = amount => {

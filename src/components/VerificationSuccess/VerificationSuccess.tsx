@@ -63,7 +63,7 @@ class ConnectedVerificationSuccess extends React.Component<VerificationSuccessPr
 
           <Button
             onPress={() => history.push("/")}
-            style={styles}
+            style={styles.button}
             transparent
             full
             rounded
