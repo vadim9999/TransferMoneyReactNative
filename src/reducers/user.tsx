@@ -4,7 +4,6 @@ const initialState = {
   
 }
 
-
 const user = (state= initialState, action) =>{
   const {payload, type} = action;
 
