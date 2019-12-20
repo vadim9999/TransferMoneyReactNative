@@ -25,7 +25,7 @@ Actions and reducers you can find in folder `./src`. All components in './src/co
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/vadim9999/TransferMoneyReactNative/feature/feature%232/screenshots/screen1.jpg">
-<img src="https://raw.githubusercontent.com/vadim9999/TransferMoneyReactNative/feature/feature%232/screenshots/screen2.jpg">
-<img src="https://raw.githubusercontent.com/vadim9999/TransferMoneyReactNative/feature/feature%232/screenshots/screen3.jpg">
-<img src="https://raw.githubusercontent.com/vadim9999/TransferMoneyReactNative/feature/feature%232/screenshots/screen4.jpg">
+<img src="https://github.com/vadim9999/TransferMoneyReactNative/blob/master/screenshots/screen1.jpg">
+<img src="https://github.com/vadim9999/TransferMoneyReactNative/blob/master/screenshots/screen2.jpg">
+<img src="https://github.com/vadim9999/TransferMoneyReactNative/blob/master/screenshots/screen3.jpg">
+<img src="https://github.com/vadim9999/TransferMoneyReactNative/blob/master/screenshots/screen4.jpg">
