@@ -16,3 +16,4 @@ web-report/
 .expo-shared/*
 
 yarn.lock
+yarn-erro.log
