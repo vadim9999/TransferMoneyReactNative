@@ -6,8 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test:watch": "jest --watch",
-    "test": "jest"
+    
   },
   "dependencies": {
     "@types/jest": "^24.0.24",
