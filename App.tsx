@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, StatusBar, ActivityIndicator } from 'react-nati
 // import Home from './src/Home'
 import * as Font from 'expo-font';
 import Router from './src/Router'
+import {Provider} from 'react-redux'
+import store from './src/store/index'
 
 class App extends React.Component<{},{}> {
   constructor(props) {
@@ -31,7 +33,10 @@ class App extends React.Component<{},{}> {
       return <ActivityIndicator />;
     }
     return (
-      <Router />
+      <Provider store={store}>
+        <Router />
+      </Provider>
+      
     );
   }
   

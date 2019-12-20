@@ -10,7 +10,14 @@ import {
 import {Link} from 'react-router-native'
 import { withRouter} from 'react-router-native'
 import { LinearGradient } from 'expo-linear-gradient';
+import {connect} from 'react-redux'
 
+const mapStateToProps = (state) =>{
+  return {
+    numberCard: state.user.numberCard,
+    money: state.user.money
+  }
+}
 
 class ConnectedHeaderApp extends React.Component<{},{}>{
   constructor(props){
@@ -57,7 +64,7 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
    
   }
   render(){
-    const {location, history}:any = this.props;
+    const {location, history, numberCard, money}:any = this.props;
 
     console.log("location header", this.props.location);
     
@@ -116,7 +123,7 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
                   <Text style={{ color:'white'}}>Golden Dream</Text>
                   </View>
                   <View>
-                  <Text style={{color:'white'}}> 01/09</Text>
+                  <Text style={{color:'white'}}> 01/19</Text>
                   </View>
                   </View>
                  ) : null
@@ -125,14 +132,14 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
              
              
              <View>
-             <Text style={{fontSize:50 , color:'white'}}>&#8372; 2,900.00</Text>
+            <Text style={{fontSize:50 , color:'white'}}>&#8372; {money}</Text>
              </View>
             
              <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-              <Text style={{color:'white'}}>XXXX</Text>
-              <Text style={{color:'white'}}>XXXX</Text>
-              <Text style={{color:'white'}}>XXXX</Text>
-              <Text style={{color:'white'}}>3456</Text>
+              <Text style={{color:'white'}}> XXXX</Text>
+              <Text style={{color:'white'}}> XXXX</Text>
+              <Text style={{color:'white'}}> XXXX</Text>
+            <Text style={{color:'white'}}> {numberCard[3]}</Text>
             </View>
             </View>
            </View>
@@ -144,5 +151,5 @@ class ConnectedHeaderApp extends React.Component<{},{}>{
   }
 }
 
-const HeaderApp = withRouter(ConnectedHeaderApp)
-export default HeaderApp
+const HeaderApp = connect(mapStateToProps)(ConnectedHeaderApp)
+export default withRouter(HeaderApp)
